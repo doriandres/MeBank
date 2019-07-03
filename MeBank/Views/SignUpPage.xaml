@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MeBank.ViewModels;assembly=MeBank"
+             mc:Ignorable="d"
+             x:Class="MeBank.Views.SignUpPage">
+    <ContentPage.BindingContext>
+        <viewModels:SignUpViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10" Spacing="10" VerticalOptions="Center">
+                <Label Text="Nuevo Usuario" FontSize="32" FontAttributes="Bold" HorizontalOptions="Center" Margin="0, 0, 0, 50"/>
+
+                <Label Text="Nombre de usuario"/>
+                <Entry Text="{Binding Username}"  Placeholder="Ingrese su nombre de usuario"/>
+
+                <Label Text="Contraseña"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Ingrese su contraseña"/>
+
+                <Label Text="Número de cédula"/>
+                <Entry Text="{Binding CitizenId}"  Placeholder="Ingrese su número de cédula" MaxLength="8" Keyboard="Numeric"/>
+
+                <Label Text="Nombre completo"/>
+                <Entry Text="{Binding Name}"  Placeholder="Ingrese su nombre completo"/>
+
+                <Label Text="Correo electrónico"/>
+                <Entry Text="{Binding Email}"  Placeholder="Ingrese su correo electrónico"/>
+
+                <Label Text="Fecha de naciemiento"/>
+                <DatePicker Date="{Binding Birthdate}" MaximumDate="01/01/2009" MinimumDate="01/01/1909"></DatePicker>
+
+                <Button Command="{Binding SignUpCommand}"  Text="Listo"/>
+                <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

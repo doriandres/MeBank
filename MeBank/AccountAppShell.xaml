@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       mc:Ignorable="d"
+       xmlns:local="clr-namespace:MeBank.Views"
+       Title="MeBank"
+       x:Class="MeBank.AccountAppShell">
+
+    <TabBar>
+        <Tab Title="Iniciar Sesión" Icon="tab_sign_in.png">
+            <ShellContent ContentTemplate="{DataTemplate local:SignInPage}" />
+        </Tab>
+        <Tab Title="Nuevo Usuario" Icon="tab_sign_up.png">
+            <ShellContent ContentTemplate="{DataTemplate local:SignUpPage}" />
+        </Tab>
+    </TabBar>
+</Shell>

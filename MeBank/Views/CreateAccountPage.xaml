@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MeBank.ViewModels;assembly=MeBank"
+             mc:Ignorable="d"
+             x:Class="MeBank.Views.CreateAccountPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:CreateAccountViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Listo" Command="{Binding CreateAccountCommand}" />
+        <ToolbarItem Text="Cancelar" Command="{Binding CancelCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="10">
+
+            <Label Text="Descripción"/>
+            <Entry Text="{Binding Description}"  Placeholder="Ingrese una descripción"/>
+
+            <Label Text="Tipo de moneda"/>
+            <Picker SelectedItem="{Binding Currency}" SelectedIndex="0" >
+                <Picker.Items>
+                    <x:String>COL</x:String>
+                    <x:String>USD</x:String>
+                    <x:String>EUR</x:String>
+                </Picker.Items>
+            </Picker>
+            <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

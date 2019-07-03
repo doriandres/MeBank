@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MeBank.ViewModels;assembly=MeBank"
+             mc:Ignorable="d"
+             x:Class="MeBank.Views.AccountsPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:AccountsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Agregar cuenta" Command="{Binding GoToAddAccountCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <ListView x:Name="ItemsListView"
+                ItemsSource="{Binding Accounts}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadAccountsCommand}"
+                IsPullToRefreshEnabled="true"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected"
+                
+                
+                >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="20, 10">
+                            <Label Text="{Binding Description}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="18" />
+                            <Label
+                                LineBreakMode="WordWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="16">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="{Binding Currency}"/>
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Balance}" />
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

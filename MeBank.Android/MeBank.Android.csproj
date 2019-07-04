@@ -143,5 +143,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\phone_service_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\tab_payment_history.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

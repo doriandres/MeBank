@@ -35,6 +35,9 @@
         <Tab Title="Servicios" Icon="tab_services.png">
             <ShellContent ContentTemplate="{DataTemplate local:ServicesPage}" />
         </Tab>
+        <Tab Title="Pagos" Icon="tab_payment_history.png">
+            <ShellContent ContentTemplate="{DataTemplate local:PaymentHistoryPage}" />
+        </Tab>
         <Tab Title="Mi Cuenta" Icon="tab_user.png">
             <ShellContent ContentTemplate="{DataTemplate local:UserSettingsPage}" />
         </Tab>

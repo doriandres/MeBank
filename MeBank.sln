@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeBank", "MeBank\MeBank.csproj", "{69445A56-8502-4CCE-AB8A-E4023A6FC53D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeBank.Android", "MeBank.Android\MeBank.Android.csproj", "{A2A3D7B6-EC4B-4869-9DF7-F375F8CE8CC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69445A56-8502-4CCE-AB8A-E4023A6FC53D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69445A56-8502-4CCE-AB8A-E4023A6FC53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69445A56-8502-4CCE-AB8A-E4023A6FC53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69445A56-8502-4CCE-AB8A-E4023A6FC53D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A3D7B6-EC4B-4869-9DF7-F375F8CE8CC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A3D7B6-EC4B-4869-9DF7-F375F8CE8CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A3D7B6-EC4B-4869-9DF7-F375F8CE8CC1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A2A3D7B6-EC4B-4869-9DF7-F375F8CE8CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A3D7B6-EC4B-4869-9DF7-F375F8CE8CC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A3D7B6-EC4B-4869-9DF7-F375F8CE8CC1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2093923A-2479-4FCC-A831-DA30807703EB}
+	EndGlobalSection
+EndGlobal

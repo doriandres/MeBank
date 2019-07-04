@@ -42,7 +42,8 @@ namespace MeBank.ViewModels
             else
             {
                 await config.SetAsync("SignedUserId", user.Id.ToString());
-                MessagingCenter.Send(this, "UserSignedIn", user);
+                IsBusy = false;
+                MessagingCenter.Send(this, "UserSignedIn", user.Id);
             }
         }
     }

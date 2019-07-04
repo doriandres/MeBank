@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using MeBank.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,8 +18,7 @@ namespace MeBank.Views
             {
                 listView.SelectedItem = null;
             }
-
-            MessagingCenter.Send(this, "UserSignedOut", 0);
+            ((UserSettingsViewModel)BindingContext).UserSignOutCommand.Execute(null);
         }
     }
 }

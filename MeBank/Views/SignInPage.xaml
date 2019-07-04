@@ -18,7 +18,7 @@
             <Label Text="Nombre de usuario"/>
             <Entry Text="{Binding Username}"  Placeholder="Ingrese su nombre de usuario"/>
             <Label Text="Contraseña"/>
-            <Entry Text="{Binding Password}" IsPassword="False" Placeholder="Ingrese su contraseña"/>
+            <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Ingrese su contraseña"/>
             <Button Command="{Binding SignInCommand}"  Text="Iniciar Sesíón"/>
             <ActivityIndicator IsRunning="{Binding IsBusy}"/>
         </StackLayout>

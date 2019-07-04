@@ -18,17 +18,35 @@ namespace MeBank.Services.Concrete
             var item = data?.FirstOrDefault();
             return item?.Value;
         }
-        
+
         /// <summary>
         /// Creates or updates a configuration key
         /// </summary>
         /// <param name="key">Key to update or create</param>
         /// <param name="value">Value to update or set</param>
         /// <returns></returns>
-        public async Task<int> SetAsync(string key,string value) => (await SaveAsync((await FindAllWhereAsync(c => c.Key == key)).FirstOrDefault() ?? new Config
+        public async Task<int> SetAsync(string key, string value)
         {
-            Key = key,
-            Value = value
-        }));
+            var results = await FindAllWhereAsync(c => c.Key == key);
+            var config = results.FirstOrDefault();
+            try
+            {
+                if (config == null)
+                {
+                    return await SaveAsync(new Config
+                    {
+                        Key = key,
+                        Value = value
+                    });
+                }
+
+                config.Value = value;
+                return await SaveAsync(config);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }

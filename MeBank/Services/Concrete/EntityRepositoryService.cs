@@ -58,7 +58,14 @@ namespace MeBank.Services.Concrete
         /// </summary>
         /// <param name="entity">Entity instance to save or update</param>
         /// <returns>Amount of changes in DataBase made by the procedure</returns>
-        public Task<int> SaveAsync(T entity) => entity.Id != 0 ? database.UpdateAsync(entity) : database.InsertAsync(entity);
+        public Task<int> SaveAsync(T entity)
+        {
+            if (entity.Id == 0)
+            {
+                return database.InsertAsync(entity);
+            }
+            return database.UpdateAsync(entity);
+        }
 
         /// <summary>
         /// Deletes an entity from DataBase

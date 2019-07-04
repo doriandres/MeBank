@@ -1,11 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 using MeBank.Services;
-using MeBank.Services.Abstract;
 using MeBank.Services.Concrete;
 using MeBank.ViewModels;
-using MeBank.Views;
 
 
 namespace MeBank
@@ -30,7 +27,7 @@ namespace MeBank
 
             MessagingCenter.Subscribe<SignUpViewModel, int>(this, "UserSignedUp", AccountControlHandler);
 
-            MessagingCenter.Subscribe<UserSettingsPage, int>(this, "UserSignedOut", AccountControlHandler);
+            MessagingCenter.Subscribe<UserSettingsViewModel, int>(this, "UserSignedOut", AccountControlHandler);
 
             var task = Task.Run(() => config.GetAsync("SignedUserId"));
             task.Wait();

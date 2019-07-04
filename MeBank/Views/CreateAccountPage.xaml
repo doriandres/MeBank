@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:MeBank.ViewModels;assembly=MeBank"
              mc:Ignorable="d"
-             x:Class="MeBank.Views.CreateAccountPage">
+             x:Class="MeBank.Views.CreateAccountPage"
+             Title="Agregar cuenta">
 
     <ContentPage.BindingContext>
         <viewModels:CreateAccountViewModel />

@@ -3,12 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MeBank.ViewModels;assembly=MeBank"
              mc:Ignorable="d"
              x:Class="MeBank.Views.ServicesPage"
              Title="Servicios">
+    <ContentPage.BindingContext>
+        <viewModels:ServicesViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-           
+
+            <ListView
+                ItemsSource="{Binding Services}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="20,10">
+                                <Image Source="{Binding Image}" WidthRequest="50" VerticalOptions="Center"/>
+                                <Label VerticalOptions="Center"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalOptions="FillAndExpand"
+                                       Text="{Binding Name}"
+                                       />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

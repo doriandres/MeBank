@@ -4,12 +4,12 @@ using MeBank.ViewModels;
 namespace MeBank.Views
 {
     [DesignTimeVisible(false)]
-    public partial class CreateAccountPage
+    public partial class DepositPage
     {
-        public CreateAccountPage()
+        public DepositPage()
         {
             InitializeComponent();
-            ((CreateAccountViewModel) BindingContext).NavigationContext = Navigation;
+            ((BaseViewModel)BindingContext).NavigationContext = Navigation;
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
+using MeBank.Models.Concrete;
 using MeBank.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MeBank.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    [DesignTimeVisible(false)]
     public partial class AccountsPage
     {
         public AccountsPage()
@@ -19,9 +16,15 @@ namespace MeBank.Views
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (sender is ListView listView)
+            if (sender is ListView listView && listView.SelectedItem != null)
             {
+                var account = (Account) listView.SelectedItem;
                 listView.SelectedItem = null;
+                if (account !=  null)
+                {
+                    ((AccountsViewModel)BindingContext).GoToAccountSettingsCommand.Execute(account.Id);
+                }
+                
             }
         }
     }

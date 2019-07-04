@@ -22,6 +22,11 @@ namespace MeBank.ViewModels
         private string title = string.Empty;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        protected BaseViewModel()
+        {
+            CancelCommand = new Command(ExecuteCancelCommand);
+        }
+
         public bool IsBusy
         {
             get => isBusy;
@@ -32,6 +37,12 @@ namespace MeBank.ViewModels
         {
             get => title;
             set => SetProperty(ref title, value);
+        }
+
+        public Command CancelCommand { get; }
+        public async void ExecuteCancelCommand()
+        {
+            await NavigationContext.PopModalAsync();
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,  [CallerMemberName]string propertyName = "",  Action onChanged = null)

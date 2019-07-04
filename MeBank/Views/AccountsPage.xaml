@@ -25,9 +25,7 @@
                 IsPullToRefreshEnabled="true"
                 CachingStrategy="RecycleElement"
                 ItemSelected="OnItemSelected"
-                
-                
-                >
+        >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

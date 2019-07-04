@@ -1,10 +1,10 @@
-﻿using MeBank.ViewModels;
+﻿using System.ComponentModel;
+using MeBank.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MeBank.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    [DesignTimeVisible(false)]
     public partial class UserSettingsPage : ContentPage
     {
         public UserSettingsPage()

@@ -5,30 +5,37 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:MeBank.ViewModels;assembly=MeBank"
              mc:Ignorable="d"
-             x:Class="MeBank.Views.ServicesPage"
-             Title="Servicios">
+             x:Class="MeBank.Views.AccountSettingsPage"
+             Title="Opciones de cuenta"
+             >
+
     <ContentPage.BindingContext>
-        <viewModels:ServicesViewModel />
+        <viewModels:AccountSettingsViewModel />
     </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Volver" Command="{Binding CancelCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
             <ListView
-                ItemsSource="{Binding Services}"
+                ItemsSource="{Binding Settings}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
                 CachingStrategy="RecycleElement"
                 ItemSelected="OnItemSelected"
-                >
+            >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="20,10">
-                                <Image Source="{Binding Image}" WidthRequest="50" VerticalOptions="Center"/>
+                            <StackLayout Orientation="Horizontal" Padding="20,20">
                                 <Label VerticalOptions="Center"
                                        VerticalTextAlignment="Center"
                                        HorizontalOptions="FillAndExpand"
                                        Text="{Binding Name}"
-                                       />
+                                       FontSize="18"
+                                />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

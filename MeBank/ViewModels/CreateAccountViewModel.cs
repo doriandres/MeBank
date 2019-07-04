@@ -12,11 +12,10 @@ namespace MeBank.ViewModels
         public CreateAccountViewModel()
         {
             CreateAccountCommand = new Command(ExecuteCreateAccountCommand);
-            CancelCommand = new Command(ExecuteCancelCommand);
         }
 
         public Command CreateAccountCommand { get; }
-        public Command CancelCommand { get; }
+        
 
         public string Description
         {
@@ -30,10 +29,7 @@ namespace MeBank.ViewModels
             set => SetProperty(ref currency, value);
         }
 
-        public async void ExecuteCancelCommand()
-        {
-            await NavigationContext.PopModalAsync();
-        }
+       
 
         public async void ExecuteCreateAccountCommand()
         {

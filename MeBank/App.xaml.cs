@@ -10,6 +10,7 @@ namespace MeBank
     public partial class App
     {
         public static int SignedUserId { get; private set; }
+        public static int AccountId { get; private set; }
 
         public App()
         {
@@ -20,15 +21,8 @@ namespace MeBank
         public void SetUpConfigurations()
         {
             RegisterRepositoryServices();
+            SubscribeToAppEvents();
             var config = DependencyService.Get<ConfigRepositoryService>();
-
-
-            MessagingCenter.Subscribe<SignInViewModel, int>(this, "UserSignedIn", AccountControlHandler);
-
-            MessagingCenter.Subscribe<SignUpViewModel, int>(this, "UserSignedUp", AccountControlHandler);
-
-            MessagingCenter.Subscribe<UserSettingsViewModel, int>(this, "UserSignedOut", AccountControlHandler);
-
             var task = Task.Run(() => config.GetAsync("SignedUserId"));
             task.Wait();
             int.TryParse(task.Result, out int id);
@@ -45,6 +39,17 @@ namespace MeBank
             DependencyService.Register<PaymentRepositoryService>();
             DependencyService.Register<ServiceRepositoryService>();
             DependencyService.Register<TransferRepositoryService>();
+        }
+
+        public void SubscribeToAppEvents()
+        {
+            MessagingCenter.Subscribe<SignInViewModel, int>(this, "UserSignedIn", AccountControlHandler);
+            MessagingCenter.Subscribe<SignUpViewModel, int>(this, "UserSignedUp", AccountControlHandler);
+            MessagingCenter.Subscribe<UserSettingsViewModel, int>(this, "UserSignedOut", AccountControlHandler);
+            MessagingCenter.Subscribe<AccountsViewModel, int>(this, "AccountSelected", (sender, accountId) =>
+            {
+                AccountId = accountId;
+            });
         }
 
         private void AccountControlHandler(object sender, int userId)

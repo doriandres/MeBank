@@ -18,29 +18,31 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
-            <ListView
+        <ScrollView>
+            <StackLayout>
+                <ListView
                 ItemsSource="{Binding Settings}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
                 CachingStrategy="RecycleElement"
                 ItemSelected="OnItemSelected"
             >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="20,20">
-                                <Label VerticalOptions="Center"
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="20,20">
+                                    <Label VerticalOptions="Center"
                                        VerticalTextAlignment="Center"
                                        HorizontalOptions="FillAndExpand"
                                        Text="{Binding Name}"
                                        FontSize="18"
                                 />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

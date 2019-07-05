@@ -14,33 +14,33 @@
         <ToolbarItem Text="Volver" Command="{Binding CancelCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-      <StackLayout Padding="10" Spacing="10">
+        <StackLayout Padding="10" Spacing="10">
 
-          <Label Text="Dígite su NIS"/>
-          <Entry Text="{Binding Code}"  Placeholder="Nis" MaxLength="8" Keyboard="Numeric"/>
-          <Button Command="{Binding GetRecipeAmountCommand}" Text="Consultar"/>
+            <Label Text="Dígite su NIS"/>
+            <Entry Text="{Binding Code}"  Placeholder="Nis" MaxLength="8" Keyboard="Numeric"/>
+            <Button Command="{Binding GetRecipeAmountCommand}" Text="Consultar"/>
 
-          <Label
+            <Label
               IsVisible="{Binding IsAmountVisible}"
               FontSize="24">
-              <Label.FormattedText>
-                  <FormattedString>
-                      <FormattedString.Spans>
-                          <Span Text="COL"/>
-                          <Span Text=" " />
-                          <Span Text="{Binding Amount}" />
-                      </FormattedString.Spans>
-                  </FormattedString>
-              </Label.FormattedText>
-          </Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="COL"/>
+                            <Span Text=" " />
+                            <Span Text="{Binding Amount, StringFormat='{0:#,0.00}'}" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
 
-          <StackLayout IsVisible="{Binding IsAmountVisible}">
-              <Label Text="Seleccione una cuenta"/>
-              <Picker ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding SelectedAccount}"/>
-              <Button Command="{Binding PayCommand}"  Text="Pagar"/>
-          </StackLayout>
+            <StackLayout IsVisible="{Binding IsAmountVisible}">
+                <Label Text="Seleccione una cuenta"/>
+                <Picker ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding SelectedAccount}"/>
+                <Button Command="{Binding PayCommand}"  Text="Pagar"/>
+            </StackLayout>
 
-          <ActivityIndicator IsRunning="{Binding IsBusy}"/>
-      </StackLayout>
+            <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

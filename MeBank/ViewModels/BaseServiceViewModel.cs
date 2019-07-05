@@ -110,7 +110,6 @@ namespace MeBank.ViewModels
             }
 
             var balance = selectedAccount.Balance;
-
             selectedAccount.Balance -= finalAmount;
             var changes = await accountRepository.SaveAsync(selectedAccount);
             var service = (await serviceRepository.FindAllWhereAsync(s => s.Description == serviceName)).FirstOrDefault();
@@ -121,7 +120,7 @@ namespace MeBank.ViewModels
                 added = await paymentRepository.SaveAsync(new Payment
                 {
                     AccountId = selectedAccount.Id,
-                    Date = new DateTime(),
+                    Date = DateTime.Now,
                     Amount = finalAmount,
                     ServiceId = service.Id
                 });
@@ -143,6 +142,7 @@ namespace MeBank.ViewModels
             {
                 IsBusy = false;
                 MessagingCenter.Send(this, "BalanceChanged");
+                MessagingCenter.Send(this, "PaymentCreated");
                 await App.Alert("Listo", "Su pago se ha realizado exitosamente", "Aceptar");
                 ExecuteCancelCommand();
             }

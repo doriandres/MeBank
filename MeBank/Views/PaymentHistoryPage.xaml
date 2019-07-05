@@ -3,13 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MeBank.ViewModels;assembly=MeBank"
              mc:Ignorable="d"
              x:Class="MeBank.Views.PaymentHistoryPage"
              Title="Historial de pagos"
              >
+    <ContentPage.BindingContext>
+        <viewModels:PaymentHistoryViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-         
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <ListView
+                  ItemsSource="{Binding Payments}"
+                  VerticalOptions="FillAndExpand"
+                  HasUnevenRows="true"
+                  IsPullToRefreshEnabled="true"
+                  CachingStrategy="RecycleElement"
+                  ItemSelected="OnItemSelected"
+                  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="20, 10">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label HorizontalOptions="Start" FontSize="16">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="Servicio: "/>
+                                                        <Span Text="{Binding Service}"  />
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label HorizontalOptions="End" Text="{Binding Payment.Date, StringFormat='{0:dd/MM/yyyy}'}"/>
+                                    </StackLayout>
+                                    <Label HorizontalOptions="Start" FontSize="14">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="Cuenta: "/>
+                                                    <Span Text="{Binding Account}"  />
+                                                    <Span Text="    "/>
+                                                    <Span Text="{Binding Currency}"/>
+                                                    <Span Text=" -"/>
+                                                    <Span Text="{Binding Payment.Amount, StringFormat='{0:#,0.00}'}"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

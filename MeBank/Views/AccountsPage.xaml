@@ -17,11 +17,10 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout>
-        <ListView x:Name="ItemsListView"
+        <ListView 
                 ItemsSource="{Binding Accounts}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
-                RefreshCommand="{Binding LoadAccountsCommand}"
                 IsPullToRefreshEnabled="true"
                 CachingStrategy="RecycleElement"
                 ItemSelected="OnItemSelected"
@@ -43,7 +42,7 @@
                                         <FormattedString.Spans>
                                             <Span Text="{Binding Currency}"/>
                                             <Span Text=" " />
-                                            <Span Text="{Binding Balance}" />
+                                            <Span Text="{Binding Balance, StringFormat='{0:#,0.00}'}"  />
                                         </FormattedString.Spans>
                                     </FormattedString>
                                 </Label.FormattedText>

@@ -13,7 +13,6 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Listo" Command="{Binding CreateAccountCommand}" />
         <ToolbarItem Text="Cancelar" Command="{Binding CancelCommand}" />
     </ContentPage.ToolbarItems>
 
@@ -31,6 +30,7 @@
                     <x:String>EUR</x:String>
                 </Picker.Items>
             </Picker>
+            <Button Command="{Binding CreateAccountCommand}" Text="Listo"/>
             <ActivityIndicator IsRunning="{Binding IsBusy}"/>
         </StackLayout>
     </ContentPage.Content>

@@ -10,7 +10,7 @@ namespace MeBank.Models.Concrete
         public int Id { get; set; }
 
         [Column("SER_DESCRIPCION"), MaxLength(100), NotNull]
-        public int Description { get; set; }
+        public string Description { get; set; }
 
         [Column("SER_ESTADO"), MaxLength(1), NotNull]
         public string Status { get; set; }

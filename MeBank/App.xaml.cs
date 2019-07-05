@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using MeBank.Models.Concrete;
 using Xamarin.Forms;
 using MeBank.Services;
+using MeBank.Services.Abstract;
 using MeBank.Services.Concrete;
 using MeBank.ViewModels;
 
@@ -16,9 +19,10 @@ namespace MeBank
         {
             InitializeComponent();
             SetUpConfigurations();
+            CreateDefaultData();
         }
 
-        public void SetUpConfigurations()
+        private void SetUpConfigurations()
         {
             RegisterRepositoryServices();
             SubscribeToAppEvents();
@@ -29,7 +33,7 @@ namespace MeBank
             AccountControlHandler(null, id);
         }
 
-        public void RegisterRepositoryServices()
+        private void RegisterRepositoryServices()
         {
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<DataBaseConnectionManager>();
@@ -41,7 +45,7 @@ namespace MeBank
             DependencyService.Register<TransferRepositoryService>();
         }
 
-        public void SubscribeToAppEvents()
+        private void SubscribeToAppEvents()
         {
             MessagingCenter.Subscribe<SignInViewModel, int>(this, "UserSignedIn", AccountControlHandler);
             MessagingCenter.Subscribe<SignUpViewModel, int>(this, "UserSignedUp", AccountControlHandler);
@@ -63,6 +67,48 @@ namespace MeBank
             else
             {
                 MainPage = new AppShell();
+            }
+        }
+
+        private async void CreateDefaultData()
+        {
+            var serviceRepository = DependencyService.Get<IServiceRepositoryService>();
+            var electricalService = new Service
+            {
+                Description = "Electricidad",
+                Status = "A"
+            };
+            var waterService = new Service
+            {
+                Description = "Agua",
+                Status = "A"
+            };
+            var phoneService = new Service
+            {
+                Description = "Telefonía",
+                Status = "A"
+            };
+            var internetService = new Service
+            {
+                Description = "Internet",
+                Status = "A"
+            };
+            var existingServices = await serviceRepository.FindAllAsync();
+            if (existingServices.All(s => s.Description != electricalService.Description))
+            {
+                await serviceRepository.SaveAsync(electricalService);
+            }
+            if (existingServices.All(s => s.Description != waterService.Description))
+            {
+                await serviceRepository.SaveAsync(waterService);
+            }
+            if (existingServices.All(s => s.Description != phoneService.Description))
+            {
+                await serviceRepository.SaveAsync(phoneService);
+            }
+            if (existingServices.All(s => s.Description != internetService.Description))
+            {
+                await serviceRepository.SaveAsync(internetService);
             }
         }
 

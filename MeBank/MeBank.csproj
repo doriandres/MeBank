@@ -20,6 +20,9 @@
     <Compile Update="Views\AccountSettingsPage.xaml.cs">
       <DependentUpon>AccountSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ElectricalServicePage.xaml.cs">
+      <DependentUpon>ElectricalServicePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +38,15 @@
     <EmbeddedResource Update="Views\DepositPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ElectricalServicePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\InternetServicePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     <EmbeddedResource Update="Views\PaymentHistoryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PhoneServicePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ServicesPage.xaml">
@@ -51,6 +62,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UserSettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\WaterServicePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

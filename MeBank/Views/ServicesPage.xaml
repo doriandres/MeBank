@@ -27,7 +27,7 @@
                                 <Label VerticalOptions="Center"
                                        VerticalTextAlignment="Center"
                                        HorizontalOptions="FillAndExpand"
-                                       Text="{Binding Name}"
+                                       Text="{Binding Service.Description}"
                                        />
                             </StackLayout>
                         </ViewCell>

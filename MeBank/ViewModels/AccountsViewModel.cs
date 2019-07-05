@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using MeBank.Models.Concrete;
-using MeBank.Services.Abstract;
 using MeBank.Views;
 using Xamarin.Forms;
 
@@ -25,6 +24,7 @@ namespace MeBank.ViewModels
             MessagingCenter.Subscribe<CreateAccountViewModel, Account>(this, "AccountAdded", (sender, account) =>  Accounts.Add(account));
             MessagingCenter.Subscribe<DepositViewModel>(this, "AccountBalanceChanged", sender => ExecuteLoadAccountsCommand());
             MessagingCenter.Subscribe<AccountSettingsViewModel>(this, "AccountRemoved", (sender) => ExecuteLoadAccountsCommand());
+            MessagingCenter.Subscribe<BaseServiceViewModel>(this, "BalanceChanged", (sender) => ExecuteLoadAccountsCommand());
         }
 
         private async void ExecuteLoadAccountsCommand()

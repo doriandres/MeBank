@@ -1,7 +1,10 @@
 ﻿namespace MeBank.ViewModels
 {
-    public class PhoneServiceViewModel : BaseViewModel
+    public class PhoneServiceViewModel : BaseServiceViewModel
     {
-        
+        public PhoneServiceViewModel() : base("Telefonía", "Número", true)
+        {
+
+        }
     }
 }

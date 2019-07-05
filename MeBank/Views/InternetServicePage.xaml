@@ -14,10 +14,47 @@
         <ToolbarItem Text="Volver" Command="{Binding CancelCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Servicio de Internet"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+      <StackLayout Padding="10" Spacing="10">
+
+          <Label>Seleccione un operador</Label>
+
+          <Picker SelectedItem="{Binding SelectedOperator}">
+              <Picker.ItemsSource>
+                  <x:Array Type="{x:Type x:String}">
+                      <x:String>Kolbi</x:String>
+                      <x:String>Tigo</x:String>
+                      <x:String>Claro</x:String>
+                      <x:String>Telecable</x:String>
+                      <x:String>Cabletica</x:String>
+                  </x:Array>
+              </Picker.ItemsSource>
+          </Picker>
+
+          <Label Text="Dígite su número de contrato"/>
+          <Entry Text="{Binding Code}"  Placeholder="Contrato" MaxLength="8" Keyboard="Numeric"/>
+          <Button Command="{Binding GetRecipeAmountCommand}" Text="Consultar"/>
+
+          <Label
+              IsVisible="{Binding IsAmountVisible}"
+              FontSize="24">
+              <Label.FormattedText>
+                  <FormattedString>
+                      <FormattedString.Spans>
+                          <Span Text="COL"/>
+                          <Span Text=" " />
+                          <Span Text="{Binding Amount}" />
+                      </FormattedString.Spans>
+                  </FormattedString>
+              </Label.FormattedText>
+          </Label>
+
+          <StackLayout IsVisible="{Binding IsAmountVisible}">
+              <Label Text="Seleccione una cuenta"/>
+              <Picker ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding SelectedAccount}"/>
+              <Button Command="{Binding PayCommand}"  Text="Pagar"/>
+          </StackLayout>
+
+          <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+      </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,7 +1,10 @@
 ﻿namespace MeBank.ViewModels
 {
-    public class WaterServiceViewModel : BaseViewModel
+    public class WaterServiceViewModel : BaseServiceViewModel
     {
-        
+        public WaterServiceViewModel() : base("Agua", "Nis")
+        {
+
+        }
     }
 }

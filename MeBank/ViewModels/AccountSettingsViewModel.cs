@@ -15,6 +15,10 @@ namespace MeBank.ViewModels
                 new SettingsItem {
                     Name = "Depositar dinero", 
                     Command = new Command(ExecuteGoToDepositPage)
+                },
+                new SettingsItem {
+                    Name = "Eliminar cuenta",
+                    Command = new Command(ExecuteDeleteAccount)
                 }
             };
         }
@@ -22,6 +26,18 @@ namespace MeBank.ViewModels
         public async void ExecuteGoToDepositPage()
         {
             await NavigationContext.PushModalAsync(new NavigationPage(new DepositPage()));
+        }
+
+        public async void ExecuteDeleteAccount()
+        {
+            if (await App.Alert("Alerta", "¿Seguro que desea eliminar la cuenta?", "Eliminar", "Cancelar"))
+            {
+                var account = await accountRepository.FindByIdAsync(App.AccountId);
+                await accountRepository.DeleteAsync(account);
+                MessagingCenter.Send(this, "AccountRemoved");
+                await App.Alert("Listo", "La cuenta ha sido eliminada exitosamente", "Aceptar");
+                ExecuteCancelCommand();
+            }
         }
     }
 }

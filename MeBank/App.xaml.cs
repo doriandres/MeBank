@@ -68,7 +68,7 @@ namespace MeBank
 
         public static Task Alert(string title, string message, string cancel) => Current.MainPage.DisplayAlert(title, message, cancel);
 
-        public static Task Alert(string title, string message, string accept, string cancel) => Current.MainPage.DisplayAlert(title, message, accept, cancel);
+        public static Task<bool> Alert(string title, string message, string accept, string cancel) => Current.MainPage.DisplayAlert(title, message, accept, cancel);
 
         protected override void OnStart()
         {

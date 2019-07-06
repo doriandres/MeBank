@@ -21,7 +21,7 @@
                 <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Ingrese su contraseña"/>
 
                 <Label Text="Número de cédula"/>
-                <Entry Text="{Binding CitizenId}"  Placeholder="Ingrese su número de cédula" MaxLength="8" Keyboard="Numeric"/>
+                <Entry Text="{Binding CitizenId}"  Placeholder="Ingrese su número de cédula" MaxLength="9" Keyboard="Numeric"/>
 
                 <Label Text="Nombre completo"/>
                 <Entry Text="{Binding Name}"  Placeholder="Ingrese su nombre completo"/>

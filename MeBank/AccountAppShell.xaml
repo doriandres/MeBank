@@ -12,8 +12,8 @@
         <Tab Title="Iniciar Sesión" Icon="tab_sign_in.png">
             <ShellContent ContentTemplate="{DataTemplate local:SignInPage}" />
         </Tab>
-        <Tab Title="Nuevo Usuario" Icon="tab_sign_up.png">
+        <!--<Tab Title="Nuevo Usuario" Icon="tab_sign_up.png">
             <ShellContent ContentTemplate="{DataTemplate local:SignUpPage}" />
-        </Tab>
+        </Tab>-->
     </TabBar>
 </Shell>

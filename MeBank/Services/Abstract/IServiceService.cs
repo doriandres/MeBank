@@ -2,7 +2,8 @@
 
 namespace MeBank.Services.Abstract
 {
-    public interface IAccountRepositoryService : IEntityRepositoryService<Account>
+    public interface IServiceService : 
+        IEntityService<Service>
     {
     }
 }

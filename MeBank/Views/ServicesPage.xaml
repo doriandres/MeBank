@@ -22,13 +22,11 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="20,10">
-                                <Image Source="{Binding Image}" WidthRequest="50" VerticalOptions="Center"/>
-                                <Label VerticalOptions="Center"
-                                       VerticalTextAlignment="Center"
-                                       HorizontalOptions="FillAndExpand"
-                                       Text="{Binding Service.Description}"
-                                       />
+                            <StackLayout Padding="20, 10">
+                                <Label Text="{Binding Description}" 
+                                       LineBreakMode="NoWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="18" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

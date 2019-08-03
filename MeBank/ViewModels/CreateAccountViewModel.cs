@@ -1,5 +1,4 @@
 ﻿using MeBank.Models.Concrete;
-using MeBank.Services.Abstract;
 using Xamarin.Forms;
 
 namespace MeBank.ViewModels
@@ -59,10 +58,10 @@ namespace MeBank.ViewModels
                 UserId = App.SignedUserId
             };
 
-            var changes = await accountRepository.SaveAsync(account);
+            var accountAdded = await AccountApi.AddAccountAsync(account, App.SignedUserToken);
 
             IsBusy = false;
-            if (changes == 0)
+            if (accountAdded == null)
             {
                 await App.Alert("Error", "No se pudo crear su cuenta, inténtelo máss tarde.", "Aceptar");
                 return;

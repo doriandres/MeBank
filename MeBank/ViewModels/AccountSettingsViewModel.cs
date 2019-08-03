@@ -32,8 +32,7 @@ namespace MeBank.ViewModels
         {
             if (await App.Alert("Alerta", "¿Seguro que desea eliminar la cuenta?", "Eliminar", "Cancelar"))
             {
-                var account = await accountRepository.FindByIdAsync(App.AccountId);
-                await accountRepository.DeleteAsync(account);
+                await AccountApi.RemoveAccountAsync(App.AccountId, App.SignedUserToken);
                 MessagingCenter.Send(this, "AccountRemoved");
                 await App.Alert("Listo", "La cuenta ha sido eliminada exitosamente", "Aceptar");
                 ExecuteCancelCommand();

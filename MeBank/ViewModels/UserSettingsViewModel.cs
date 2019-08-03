@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using MeBank.Models.Concrete;
+using Xamarin.Forms;
 
 namespace MeBank.ViewModels
 {
@@ -20,7 +21,7 @@ namespace MeBank.ViewModels
             }
             else
             {
-                MessagingCenter.Send(this, "UserSignedOut", 0);
+                MessagingCenter.Send(this, "UserSignedOut", new User());
             }
         }
     }

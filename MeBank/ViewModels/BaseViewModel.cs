@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MeBank.Services.Abstract;
+using MeBank.Services.API;
 using Xamarin.Forms;
 
 namespace MeBank.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        protected IConfigRepositoryService config => DependencyService.Get<IConfigRepositoryService>();
-        protected IUserRepositoryService userRepository => DependencyService.Get<IUserRepositoryService>();
-        protected IAccountRepositoryService accountRepository => DependencyService.Get<IAccountRepositoryService>();
-        protected IPaymentRepositoryService paymentRepository => DependencyService.Get<IPaymentRepositoryService>();
-        protected ITransferRepositoryService transferRepository => DependencyService.Get<ITransferRepositoryService>();
-        protected IServiceRepositoryService serviceRepository => DependencyService.Get<IServiceRepositoryService>();
+        protected IConfigService config => DependencyService.Get<IConfigService>();
+        protected IUserService User => DependencyService.Get<IUserService>();
+        protected IAccountService Account => DependencyService.Get<IAccountService>();
+        protected IPaymentService Payment => DependencyService.Get<IPaymentService>();
+        protected ITransferService Transfer => DependencyService.Get<ITransferService>();
+        protected IServiceService Service => DependencyService.Get<IServiceService>();
+
+        protected UserApiService UserApi => DependencyService.Get<UserApiService>();
+        protected AccountApiService AccountApi => DependencyService.Get<AccountApiService>();
+        protected PaymentsApiService PaymentApi => DependencyService.Get<PaymentsApiService>();
+        protected TransferenceApiService TransferApi => DependencyService.Get<TransferenceApiService>();
+        protected ServiceApiService ServiceApi => DependencyService.Get<ServiceApiService>();
 
         public INavigation NavigationContext { get; set; }
 

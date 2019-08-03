@@ -21,10 +21,10 @@ namespace MeBank.ViewModels
         {
             IsBusy = true;
             Payments.Clear();
-            var accounts = await accountRepository.FindAllWhereAsync(a => a.UserId == App.SignedUserId);
-            var payments = await paymentRepository.FindAllAsync();
+            var accounts = (await AccountApi.GetAccountsAsync(App.SignedUserToken)).Where(a => a.UserId == App.SignedUserId);
+            var payments = await PaymentApi.GetPaymentsAsync(App.SignedUserToken);
             payments = payments.Where(p => accounts.Any(a => a.Id == p.AccountId)).ToList();
-            var services = await serviceRepository.FindAllAsync();
+            var services = await ServiceApi.GetServicesAsync();
             services = services.Where(s => payments.Any(p => p.ServiceId == s.Id)).ToList();
 
             payments.Reverse();

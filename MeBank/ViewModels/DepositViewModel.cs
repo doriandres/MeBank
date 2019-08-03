@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MeBank.ViewModels
@@ -11,9 +12,9 @@ namespace MeBank.ViewModels
         public DepositViewModel()
         {
             SubmitDepositCommand = new Command(ExecuteSubmitDepositCommand);
-            var task = Task.Run(() => accountRepository.FindByIdAsync(App.AccountId));
+            var task = Task.Run(() => AccountApi.GetAccountsAsync(App.SignedUserToken));
             task.Wait();
-            currency = task.Result.Currency;
+            currency = task.Result.FirstOrDefault(a => a.Id == App.AccountId)?.Currency;
         }
 
         public Command SubmitDepositCommand { get; }
@@ -28,10 +29,11 @@ namespace MeBank.ViewModels
             IsBusy = true;
             if (decimalAmount > 0)
             {
-                var account = await accountRepository.FindByIdAsync(App.AccountId);
+                var account =
+                    (await AccountApi.GetAccountsAsync(App.SignedUserToken)).FirstOrDefault(a => a.Id == App.AccountId);
                 account.Balance += decimalAmount;
-                var changes = await accountRepository.SaveAsync(account);
-                if (changes == 0)
+                var accountModified = await AccountApi.ModifyAccountAsync(account, App.SignedUserToken);
+                if (accountModified == null)
                 {
                     IsBusy = false;
                     await App.Alert("Error", "No se pudo realizar el deposito, inténtelo más tarde", "Aceptar");

@@ -15,7 +15,7 @@ namespace MeBank.Services.Concrete
     /// the methods needed for most of the entities repositories
     /// </summary>
     /// <typeparam name="T">Entity type</typeparam>
-    public abstract class EntityRepositoryService<T> : IEntityRepositoryService<T> where T : IEntity, new()
+    public abstract class EntityRepositoryService<T> : IEntityService<T> where T : IEntity, new()
     {
         /// <summary>
         /// DataBase object connection to use

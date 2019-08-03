@@ -4,6 +4,7 @@ using MeBank.Models.Concrete;
 using Xamarin.Forms;
 using MeBank.Services;
 using MeBank.Services.Abstract;
+using MeBank.Services.API;
 using MeBank.Services.Concrete;
 using MeBank.ViewModels;
 
@@ -13,6 +14,7 @@ namespace MeBank
     public partial class App
     {
         public static int SignedUserId { get; private set; }
+        public static string SignedUserToken { get; private set; }
         public static int AccountId { get; private set; }
 
         public App()
@@ -26,53 +28,58 @@ namespace MeBank
         {
             RegisterRepositoryServices();
             SubscribeToAppEvents();
-            var config = DependencyService.Get<ConfigRepositoryService>();
-            var task = Task.Run(() => config.GetAsync("SignedUserId"));
-            task.Wait();
-            int.TryParse(task.Result, out int id);
-            AccountControlHandler(null, id);
+            //var config = DependencyService.Get<ConfigService>();
+            //var task = Task.Run(() => config.GetAsync("SignedUserId"));
+            //task.Wait();
+            //int.TryParse(task.Result, out int id);
+            AccountControlHandler(null, null);
         }
 
         private void RegisterRepositoryServices()
         {
-            DependencyService.Register<MockDataStore>();
             DependencyService.Register<DataBaseConnectionManager>();
-            DependencyService.Register<ConfigRepositoryService>();
+            DependencyService.Register<ApiClientManager>();
+            DependencyService.Register<ConfigService>();
             DependencyService.Register<UserRepositoryService>();
             DependencyService.Register<AccountRepositoryService>();
             DependencyService.Register<PaymentRepositoryService>();
             DependencyService.Register<ServiceRepositoryService>();
             DependencyService.Register<TransferRepositoryService>();
+            DependencyService.Register<UserApiService>();
+            DependencyService.Register<AccountApiService>();
+            DependencyService.Register<PaymentsApiService>();
+            DependencyService.Register<ServiceApiService>();
+            DependencyService.Register<TransferenceApiService>();
         }
 
         private void SubscribeToAppEvents()
         {
-            MessagingCenter.Subscribe<SignInViewModel, int>(this, "UserSignedIn", AccountControlHandler);
-            MessagingCenter.Subscribe<SignUpViewModel, int>(this, "UserSignedUp", AccountControlHandler);
-            MessagingCenter.Subscribe<UserSettingsViewModel, int>(this, "UserSignedOut", AccountControlHandler);
+            MessagingCenter.Subscribe<SignInViewModel, User>(this, "UserSignedIn", AccountControlHandler);
+            MessagingCenter.Subscribe<SignUpViewModel, User>(this, "UserSignedUp", AccountControlHandler);
+            MessagingCenter.Subscribe<UserSettingsViewModel, User>(this, "UserSignedOut", AccountControlHandler);
             MessagingCenter.Subscribe<AccountsViewModel, int>(this, "AccountSelected", (sender, accountId) =>
             {
                 AccountId = accountId;
             });
         }
 
-        private void AccountControlHandler(object sender, int userId)
+        private void AccountControlHandler(object sender, User user)
         {
-            SignedUserId = userId;
-
-            if (userId == 0)
+            if (user == null || user.Id == 0)
             {
                 MainPage = new AccountAppShell();
             }
             else
             {
+                SignedUserId = user.Id;
+                SignedUserToken = user.Token;
                 MainPage = new AppShell();
             }
         }
 
         private async void CreateDefaultData()
         {
-            var serviceRepository = DependencyService.Get<IServiceRepositoryService>();
+            var serviceRepository = DependencyService.Get<IServiceService>();
             var electricalService = new Service
             {
                 Description = "Electricidad",

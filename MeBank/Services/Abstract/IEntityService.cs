@@ -6,7 +6,7 @@ using MeBank.Models.Abstract;
 
 namespace MeBank.Services.Abstract
 {
-    public interface IEntityRepositoryService<T> where T : IEntity
+    public interface IEntityService<T> where T : IEntity
     {
         Task<List<T>> FindAllAsync();
 

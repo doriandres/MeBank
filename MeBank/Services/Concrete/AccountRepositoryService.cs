@@ -3,7 +3,7 @@ using MeBank.Services.Abstract;
 
 namespace MeBank.Services.Concrete
 {
-    public class AccountRepositoryService : EntityRepositoryService<Account>, IAccountRepositoryService
+    public class AccountRepositoryService : EntityRepositoryService<Account>, IAccountService
     {
 
     }

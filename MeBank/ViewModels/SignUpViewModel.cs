@@ -104,7 +104,7 @@ namespace MeBank.ViewModels
 
             if (!string.IsNullOrEmpty(Username))
             {
-                var users = await userRepository.FindAllWhereAsync(u => u.Username == Username);
+                var users = await User.FindAllWhereAsync(u => u.Username == Username);
                 if (users.Count != 0)
                 {
                     return "El nombre de usuario ya existe";
@@ -113,7 +113,7 @@ namespace MeBank.ViewModels
 
             if (!string.IsNullOrEmpty(CitizenId))
             {
-                var users = await userRepository.FindAllWhereAsync(u => u.CitizenId == CitizenId);
+                var users = await User.FindAllWhereAsync(u => u.CitizenId == CitizenId);
                 if (users.Count != 0)
                 {
                     return "El número de cédula ya existe";
@@ -122,7 +122,7 @@ namespace MeBank.ViewModels
 
             if (!string.IsNullOrEmpty(Email))
             {
-                var users = await userRepository.FindAllWhereAsync(u => u.Email == Email);
+                var users = await User.FindAllWhereAsync(u => u.Email == Email);
                 if (users.Count != 0)
                 {
                     return "El correo electrónico ya existe";
@@ -148,7 +148,7 @@ namespace MeBank.ViewModels
                     Birthday = Birthdate,
                     Status = "A"
                 };
-                var changes = await userRepository.SaveAsync(user);
+                var changes = await User.SaveAsync(user);
 
                 
 

@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using MeBank.Services.Abstract;
-using MeBank.Services.Concrete;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace MeBank.ViewModels
 {
@@ -32,8 +29,8 @@ namespace MeBank.ViewModels
         private async void SubmitSignIn()
         {
             IsBusy = true;
-            var results = await userRepository.FindAllWhereAsync(u => u.Username == username && u.Password == password);
-            var user = results.FirstOrDefault();
+
+            var user = await UserApi.Authenticate(username, password);
             if (user == null)
             {
                 IsBusy = false;
@@ -41,9 +38,9 @@ namespace MeBank.ViewModels
             }
             else
             {
-                await config.SetAsync("SignedUserId", user.Id.ToString());
+                //await config.SetAsync("SignedUserId", user.Id.ToString());
                 IsBusy = false;
-                MessagingCenter.Send(this, "UserSignedIn", user.Id);
+                MessagingCenter.Send(this, "UserSignedIn", user);
             }
         }
     }

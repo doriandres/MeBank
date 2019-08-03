@@ -5,7 +5,7 @@ using MeBank.Services.Abstract;
 
 namespace MeBank.Services.Concrete
 {
-    public class ConfigRepositoryService : EntityRepositoryService<Config>, IConfigRepositoryService
+    public class ConfigService : EntityRepositoryService<Config>, IConfigService
     {
         /// <summary>
         /// Gets the value of a config

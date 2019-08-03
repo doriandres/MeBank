@@ -25,7 +25,7 @@ namespace MeBank.ViewModels
             this.validateOperator = validateOperator;
             GetRecipeAmountCommand = new Command(ExecuteGetRecipeAmountCommand);
             PayCommand = new Command(ExecutePayCommand);
-            var task = Task.Run(() => accountRepository.FindAllWhereAsync(a => a.UserId == App.SignedUserId));
+            var task = Task.Run(() => Account.FindAllWhereAsync(a => a.UserId == App.SignedUserId));
             task.Wait();
             Accounts = task.Result;
         }
@@ -111,13 +111,13 @@ namespace MeBank.ViewModels
 
             var balance = selectedAccount.Balance;
             selectedAccount.Balance -= finalAmount;
-            var changes = await accountRepository.SaveAsync(selectedAccount);
-            var service = (await serviceRepository.FindAllWhereAsync(s => s.Description == serviceName)).FirstOrDefault();
+            var changes = await Account.SaveAsync(selectedAccount);
+            var service = (await Service.FindAllWhereAsync(s => s.Description == serviceName)).FirstOrDefault();
             var added = 0;
 
             if (service != null)
             {
-                added = await paymentRepository.SaveAsync(new Payment
+                added = await Payment.SaveAsync(new Payment
                 {
                     AccountId = selectedAccount.Id,
                     Date = DateTime.Now,
@@ -131,7 +131,7 @@ namespace MeBank.ViewModels
                 if (service == null)
                 {
                     selectedAccount.Balance = balance;
-                    await accountRepository.SaveAsync(selectedAccount);
+                    await Account.SaveAsync(selectedAccount);
                 }
 
                 IsBusy = false;

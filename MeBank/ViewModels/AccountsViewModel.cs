@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using MeBank.Models.Concrete;
 using MeBank.Views;
@@ -40,7 +41,8 @@ namespace MeBank.ViewModels
             try
             {
                 Accounts.Clear();
-                var accounts = (await AccountApi.GetAccountsAsync(App.SignedUserToken)).Where(a => a.UserId == App.SignedUserId);
+                var accounts = await AccountApi.GetAccountsAsync(App.SignedUserToken);
+                accounts = accounts.Where(a => a.UserId == App.SignedUserId).ToList();
                 foreach (var account in accounts)
                 {
                     Accounts.Add(account);

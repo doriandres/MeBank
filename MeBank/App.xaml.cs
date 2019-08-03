@@ -13,6 +13,7 @@ namespace MeBank
 {
     public partial class App
     {
+        public const string SynchFusionKey = "MTI4NDU3QDMxMzcyZTMyMmUzMG5ZOWM4RG54Wm9RbWRIR0lYbWJhb2kwTnQ0Zkw1bndlSk55dUxNWEwzMEU9";
         public static int SignedUserId { get; private set; }
         public static string SignedUserToken { get; private set; }
         public static int AccountId { get; private set; }

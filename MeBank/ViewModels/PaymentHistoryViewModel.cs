@@ -21,7 +21,8 @@ namespace MeBank.ViewModels
         {
             IsBusy = true;
             Payments.Clear();
-            var accounts = (await AccountApi.GetAccountsAsync(App.SignedUserToken)).Where(a => a.UserId == App.SignedUserId);
+            var accounts = await AccountApi.GetAccountsAsync(App.SignedUserToken);
+            accounts = accounts.Where(a => a.UserId == App.SignedUserId).ToList();
             var payments = await PaymentApi.GetPaymentsAsync(App.SignedUserToken);
             payments = payments.Where(p => accounts.Any(a => a.Id == p.AccountId)).ToList();
             var services = await ServiceApi.GetServicesAsync();

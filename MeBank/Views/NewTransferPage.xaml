@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MeBank.ViewModels;assembly=MeBank"
+             mc:Ignorable="d"
+             x:Class="MeBank.Views.NewTransferPage"
+             Title="Nueva Transferencia">
+    <ContentPage.BindingContext>
+        <viewModels:NewTransferViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Volver" Command="{Binding CancelCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="10">
+
+            <StackLayout>
+                <Label Text="Seleccione la cuenta de origen"/>
+                <Picker ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding FromAccountSelected}"/>
+
+                <Label Text="Seleccione la cuenta de destino"/>
+                <Picker ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding ToAccountSelected}"/>
+
+                <Label Text="Monto"/>
+                <Entry Text="{Binding Amount}" Keyboard="Numeric"/>
+
+                <Label Text="Descripción"/>
+                <Entry Text="{Binding Description}"/>
+
+                <Button Command="{Binding PerformTransferCommand}"  Text="Transferir"/>
+            </StackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

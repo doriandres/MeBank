@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using MeBank.Models.Concrete;
 using Newtonsoft.Json;
@@ -28,7 +29,7 @@ namespace MeBank.Services.API
         {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var jsonDataToSend = JsonConvert.SerializeObject(transference);
-            var response = await httpClient.PostAsync("https://www.gruposama.com/WebApiSecureSAMA/api/transferencia/ingresar", new StringContent(jsonDataToSend));
+            var response = await httpClient.PostAsync("https://www.gruposama.com/WebApiSecureSAMA/api/transferencia/ingresar", new StringContent(jsonDataToSend, Encoding.UTF8, "application/json"));
             var responseData = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Transfer>(responseData);
         }

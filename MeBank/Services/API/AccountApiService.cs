@@ -29,7 +29,7 @@ namespace MeBank.Services.API
         {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var jsonDataToSend = JsonConvert.SerializeObject(accounts);
-            var response = await httpClient.PostAsync("https://www.gruposama.com/WebApiSecureSAMA/api/cuenta/ingresar", new StringContent(jsonDataToSend));
+            var response = await httpClient.PostAsync("https://www.gruposama.com/WebApiSecureSAMA/api/cuenta/ingresar", new StringContent(jsonDataToSend, Encoding.UTF8, "application/json"));
             var responseData = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Account>(responseData);
         }

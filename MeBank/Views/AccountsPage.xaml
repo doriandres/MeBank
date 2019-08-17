@@ -21,7 +21,6 @@
                 ItemsSource="{Binding Accounts}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
-                IsPullToRefreshEnabled="true"
                 CachingStrategy="RecycleElement"
                 ItemSelected="OnItemSelected"
         >

@@ -32,9 +32,17 @@ namespace MeBank.ViewModels
         {
             if (await App.Alert("Alerta", "¿Seguro que desea eliminar la cuenta?", "Eliminar", "Cancelar"))
             {
-                await AccountApi.RemoveAccountAsync(App.AccountId, App.SignedUserToken);
-                MessagingCenter.Send(this, "AccountRemoved");
-                await App.Alert("Listo", "La cuenta ha sido eliminada exitosamente", "Aceptar");
+                var removed = await AccountApi.RemoveAccountAsync(App.AccountId, App.SignedUserToken);
+                if (removed)
+                {
+                    MessagingCenter.Send(this, "AccountRemoved");
+                    await App.Alert("Listo", "La cuenta ha sido eliminada exitosamente", "Aceptar");
+                }
+                else
+                {
+                    await App.Alert("Error", "Hubo un error con la cuenta y no se pudo eliminar, inténtelo más tarde.", "Aceptar");
+                }
+                
                 ExecuteCancelCommand();
             }
         }

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MeBank.Models.Concrete;
+using MeBank.Views;
 using Xamarin.Forms;
 
 namespace MeBank.ViewModels
@@ -10,12 +11,14 @@ namespace MeBank.ViewModels
     {
         public ObservableCollection<Service> Services { get; set; }
         public Command LoadServicesCommand { get; private set; }
+        public Command GoToServicePage { get; private set; }
 
         public ServicesViewModel()
         {
             
             Services = new ObservableCollection<Service>();
             LoadServicesCommand = new Command(ExecuteLoadServicesCommand);
+            GoToServicePage = new Command<int>(ExecuteGoToServicePage);
             LoadServicesCommand.Execute(null);
         }
 
@@ -43,6 +46,10 @@ namespace MeBank.ViewModels
             }
         }
 
-        
+        private async void ExecuteGoToServicePage(int serviceId)
+        {
+            MessagingCenter.Send(this, "ServiceSelected", serviceId);
+            await NavigationContext.PushModalAsync(new NavigationPage(new ServicePage()));
+        }
     }
 }

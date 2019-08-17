@@ -43,12 +43,12 @@ namespace MeBank.Services.API
             return JsonConvert.DeserializeObject<Account>(responseData);
         }
 
-        public async Task<Account> RemoveAccountAsync(int id, string token)
+        public async Task<bool> RemoveAccountAsync(int id, string token)
         {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await httpClient.DeleteAsync("https://www.gruposama.com/WebApiSecureSAMA/api/Cuenta/" + id);
             var responseData = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Account>(responseData);
+            return !string.IsNullOrEmpty(responseData);
         }
     }
 }

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MeBank.ViewModels;assembly=MeBank"
+             mc:Ignorable="d"
+             x:Class="MeBank.Views.ServicePage"
+             Title="Pago de Servicio">
+        <ContentPage.BindingContext>
+            <viewModels:ServicePageViewModel />
+        </ContentPage.BindingContext>
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Text="Volver" Command="{Binding CancelCommand}" />
+        </ContentPage.ToolbarItems>
+        <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="10">
+
+            <Label Text="Dígite su código de cliente"/>
+            <Entry Text="{Binding ServiceCode}"  Placeholder="Código de cliente" MaxLength="8" Keyboard="Numeric"/>
+            <Button Command="{Binding FetchPriceCommand}" Text="Consultar"/>
+
+            <Label
+                IsVisible="{Binding IsAmountVisible}"
+                FontSize="24">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="COL"/>
+                            <Span Text=" " />
+                            <Span Text="{Binding AmountToPay, StringFormat='{0:#,0.00}'}" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <StackLayout IsVisible="{Binding IsAmountVisible}">
+                <Label Text="Seleccione una cuenta"/>
+                <Picker ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Description}" SelectedItem="{Binding SelectedAccount}"/>
+                <Button Command="{Binding PayServiceCommand}"  Text="Pagar"/>
+            </StackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

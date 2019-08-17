@@ -17,6 +17,7 @@ namespace MeBank
         public static int SignedUserId { get; private set; }
         public static string SignedUserToken { get; private set; }
         public static int AccountId { get; private set; }
+        public static int ServiceId { get; private set; }
 
         public App()
         {
@@ -61,6 +62,10 @@ namespace MeBank
             MessagingCenter.Subscribe<AccountsViewModel, int>(this, "AccountSelected", (sender, accountId) =>
             {
                 AccountId = accountId;
+            });
+            MessagingCenter.Subscribe<ServicesViewModel, int>(this, "ServiceSelected", (sender, serviceId) =>
+            {
+                ServiceId = serviceId;
             });
         }
 

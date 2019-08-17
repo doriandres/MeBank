@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using MeBank.Models;
+using MeBank.Models.Concrete;
 using MeBank.ViewModels;
 using Xamarin.Forms;
 
@@ -21,9 +21,13 @@ namespace MeBank.Views
 
             if (listView.SelectedItem == null) return;
 
-            var serviceItem = (ServiceItem)listView.SelectedItem;
-            serviceItem.Command.Execute(null);
+            var serviceItem = (Service)listView.SelectedItem;
             listView.SelectedItem = null;
+
+            if (serviceItem != null)
+            {
+                ((ServicesViewModel)BindingContext).GoToServicePage.Execute(serviceItem.Id);
+            }
         }
     }
 }

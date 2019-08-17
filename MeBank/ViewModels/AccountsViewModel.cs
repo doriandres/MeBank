@@ -26,7 +26,7 @@ namespace MeBank.ViewModels
             MessagingCenter.Subscribe<CreateAccountViewModel, Account>(this, "AccountAdded", (sender, account) => ExecuteLoadAccountsCommand());
             MessagingCenter.Subscribe<DepositViewModel>(this, "AccountBalanceChanged", sender => ExecuteLoadAccountsCommand());
             MessagingCenter.Subscribe<AccountSettingsViewModel>(this, "AccountRemoved", (sender) => ExecuteLoadAccountsCommand());
-            MessagingCenter.Subscribe<BaseServiceViewModel>(this, "BalanceChanged", (sender) => ExecuteLoadAccountsCommand());
+            MessagingCenter.Subscribe<ServicePageViewModel>(this, "BalanceChanged", (sender) => ExecuteLoadAccountsCommand());
         }
 
         private async void ExecuteLoadAccountsCommand()

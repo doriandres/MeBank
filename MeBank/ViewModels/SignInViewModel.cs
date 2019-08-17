@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace MeBank.ViewModels
 {
@@ -6,10 +8,14 @@ namespace MeBank.ViewModels
     {
         private string username;
         private string password;
+        private bool connection;
 
         public SignInViewModel()
         {
             SignInCommand = new Command(SubmitSignIn);
+
+            connection = Connectivity.NetworkAccess == NetworkAccess.Internet;
+
         }
 
         public Command SignInCommand { get; }
@@ -24,6 +30,12 @@ namespace MeBank.ViewModels
         {
             get => password;
             set => SetProperty(ref password, value);
+        }
+
+        public bool Connection
+        {
+            get => connection;
+            set => SetProperty(ref connection, value);
         }
 
         private async void SubmitSignIn()

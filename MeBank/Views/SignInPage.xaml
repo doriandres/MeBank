@@ -19,7 +19,7 @@
             <Entry Text="{Binding Username}"  Placeholder="Ingrese su nombre de usuario"/>
             <Label Text="Contraseña"/>
             <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Ingrese su contraseña"/>
-            <Button Command="{Binding SignInCommand}"  Text="Iniciar Sesíón"/>
+            <Button Command="{Binding SignInCommand}" IsEnabled="{Binding Connection}"  Text="Iniciar Sesíón"/>
             <ActivityIndicator IsRunning="{Binding IsBusy}"/>
         </StackLayout>
     </ContentPage.Content>

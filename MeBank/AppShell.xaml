@@ -29,9 +29,9 @@
         <Tab Title="Cuentas" Icon="tab_account.png">
             <ShellContent ContentTemplate="{DataTemplate local:AccountsPage}" />
         </Tab>
-        <!--<Tab Title="Transacciones" Icon="tab_transactions.png">
+        <Tab Title="Transacciones" Icon="tab_transactions.png">
             <ShellContent ContentTemplate="{DataTemplate local:TransactionsPage}" />
-        </Tab>-->
+        </Tab>
         <Tab Title="Servicios" Icon="tab_services.png">
             <ShellContent ContentTemplate="{DataTemplate local:ServicesPage}" />
         </Tab>
